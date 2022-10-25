@@ -2,14 +2,17 @@ import { z } from 'zod';
 
 export const VehicleZodSchema = z.object({
   model: z.string().min(3),
-  year: z.number(),
-  color: z.string(),
-  buyValue: z.number(),
+  year: z.number().gte(1900).lte(2022),
+  color: z.string().min(3),
+  status: z.boolean().optional(),
+  buyValue: z.number().int(),
 });
-export interface IVehicle {
-  model: string;
-  year: number;
-  color: string;
-  status?: boolean
-  buyValue: number
-}
+
+export type IVehicle = z.infer<typeof VehicleZodSchema>;
+// export interface IVehicle {
+//   model: string;
+//   year: number;
+//   color: string;
+//   status?: boolean
+//   buyValue: number
+// }
