@@ -7,7 +7,3 @@ export const CarZodSchema = VehicleZodSchema.extend({
 });
 
 export type ICar = z.infer<typeof CarZodSchema>;
-// export interface ICar extends IVehicle {
-//   doorsQty: number
-//   seatsQty: number
-// }
