@@ -34,7 +34,8 @@ class CarService implements IService<ICar> {
   }
 
   public async delete(_id: string): Promise<ICar | null> {
-    return this._car.delete(_id);
+    const deleted = await this._car.delete(_id);
+    return deleted;
   }
 }
 
