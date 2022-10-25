@@ -28,8 +28,8 @@ abstract class VehicleModel<T> implements IModel <T> {
 
   public async delete(_id: string) : Promise<T> {
     if (!isValidObjectId(_id)) throw new Error('InvalidMongoId');
-    const objDeleted = await this._model.findById(_id);
-    if (!objDeleted) throw new Error('Id does not exist in the DB');
+    const objDeleted = await this._model.findOne({ _id });
+    if (!objDeleted) throw new Error('invalidID');
     await this._model.findByIdAndDelete(_id);
     return objDeleted;
   }
