@@ -20,7 +20,9 @@ class CarService implements IService<ICar> {
   }
 
   public async readOne(_id: string): Promise<ICar | null> {
-    return this._car.readOne(_id);
+    const result = await this._car.readOne(_id);
+    if (!result) throw new Error('invalidID');
+    return result;
   }
 
   public async update(_id: string, obj: Partial<ICar>): Promise<ICar | null> {
