@@ -1,6 +1,5 @@
 import { IService } from '../interfaces/IService';
 import { ICar, CarZodSchema } from '../interfaces/ICar';
-import { VehicleZodSchema } from '../interfaces/IVehicle';
 import { IModel } from '../interfaces/IModel';
 
 class CarService implements IService<ICar> {
@@ -12,9 +11,7 @@ class CarService implements IService<ICar> {
 
   public async create(obj: ICar): Promise<ICar> {
     const parsedCar = CarZodSchema.safeParse(obj);
-    const parserdVehicle = VehicleZodSchema.safeParse(obj);
     if (!parsedCar.success) throw parsedCar.error;
-    if (!parserdVehicle.success) throw parserdVehicle.error;
     return this._car.create(obj);
   }
 
